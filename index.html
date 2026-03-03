@@ -154,13 +154,8 @@
       grid-template-columns: 1fr 1fr;
       gap:10px;
     }
-    .row3{
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap:10px;
-    }
     @media (max-width: 520px){
-      .row, .row3{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
     }
 
     .btns{
@@ -290,13 +285,6 @@
       color:#1a1a1a;
       white-space:pre-wrap;
     }
-    ul{
-      margin:8px 0 0;
-      padding-left:18px;
-      color:#1a1a1a;
-      font-size:13.5px;
-      line-height:1.55;
-    }
     .chipList{
       display:flex;
       flex-wrap:wrap;
@@ -356,10 +344,10 @@
             <div class="hint">Basic contact details</div>
           </div>
           <label>Full Name</label>
-          <input id="fullName" placeholder="Your Full Name" value="Your Full Name"/>
+          <input id="fullName" placeholder="Your Full Name" value="ლუკა კანდელაკი"/>
 
           <label>Title</label>
-          <input id="title" placeholder="IT Support Specialist" value="IT Support Specialist"/>
+          <input id="title" placeholder="IT Support Specialist" value="IT მხარდაჭერის სპეციალისტი"/>
 
           <div class="row">
             <div>
@@ -387,10 +375,10 @@
         <div class="sectionCard">
           <div class="sectionTitle">
             <h2>Profile Summary</h2>
-            <div class="hint">3 to 4 lines max</div>
+            <div class="hint">Short and strong</div>
           </div>
           <label>Summary</label>
-          <textarea id="summary">IT Support Specialist with hands-on experience troubleshooting laptops and desktops, configuring Wi-Fi and basic networks, and delivering reliable end-user support. Skilled in laptop refurbishing (diagnostics, upgrades, OS reinstall, driver setup), software installation/configuration, and system optimization (removing unnecessary bloatware, improving performance, and ensuring stability). Strong practical knowledge of Windows editions and best-fit recommendations based on user needs, hardware, and security.</textarea>
+          <textarea id="summary">IT მხარდაჭერის სპეციალისტი პრაქტიკული გამოცდილებით ლეპტოპებისა და დესკტოპების დიაგნოსტიკასა და გამართვაში. გამოცდილი Windows 10/11 ინსტალაციაში, სისტემის ოპტიმიზაციაში, დრაივერების კონფიგურაციასა და Wi-Fi/basic ქსელური პრობლემების მოგვარებაში. გამოცდილება მაქვს SSD/RAM განახლებასა და სტაბილურობის ტესტირებაში.</textarea>
         </div>
 
         <div class="sectionCard">
@@ -399,52 +387,51 @@
             <div class="hint">One per line</div>
           </div>
           <label>Skills</label>
-          <textarea id="skills">Laptop & Desktop Troubleshooting (hardware/software)
-Windows 10/11 installation, configuration, and optimization
-Laptop refurbishing (diagnostics, upgrades, SSD/RAM, thermal maintenance)
-Wi-Fi troubleshooting and basic networking (routers, APs, IP/DHCP basics)
-Software installation and configuration (Office, browsers, utilities)
-Driver setup, updates, and device compatibility checks
-System cleanup and bloatware removal (performance tuning)
-Backup, data transfer, and OS reinstallation
-Customer support and clear communication</textarea>
+          <textarea id="skills">Windows 10/11 Install & Troubleshoot
+Laptop Refurbishing (SSD/RAM)
+Drivers & Updates
+Performance Optimization (Debloat)
+Wi-Fi Troubleshooting
+Basic Networking (IP/DHCP)
+Software Setup (Office/Tools)
+Hardware Diagnostics</textarea>
         </div>
 
         <div class="sectionCard">
           <div class="sectionTitle">
             <h2>Experience</h2>
-            <div class="hint">Show impact. Not vibes.</div>
+            <div class="hint">Short bullets</div>
           </div>
           <label>Experience</label>
-          <textarea id="experience">IT Support / Technician (Freelance / Personal Projects) | 20XX – Present
-• Diagnosed and repaired laptops/desktops, resolving common hardware and OS issues.
-• Refurbished devices for resale/use: SSD/RAM upgrades, clean Windows installs, driver setup, and stability testing.
-• Improved system performance by removing unnecessary bloatware, disabling nonessential startup items, and applying updates safely.
-• Troubleshot Wi-Fi connectivity issues (router settings, signal/coverage, device configuration) and restored stable connections.
-• Installed and configured day-to-day software required for work/study, ensuring compatibility and user readiness.</textarea>
+          <textarea id="experience">IT მხარდაჭერა / ტექნიკოსი (Freelance / პირადი პროექტები) | 20XX – დღემდე
+• ლეპტოპ/დესკტოპ HW და OS პრობლემების დიაგნოსტიკა და აღმოფხვრა
+• Windows 10/11 სუფთა ინსტალაცია, დრაივერები და სისტემის სტაბილურობის ტესტი
+• SSD/RAM განახლება და მოწყობილობის სტაბილურობის შემოწმება
+• სისტემის ოპტიმიზაცია: ბლოუთვერის ამოშლა და Startup ტიუნინგი
+• Wi-Fi და IP/DHCP საბაზისო კონფიგურაცია და დიაგნოსტიკა
+• საოფისე პროგრამების ინსტალაცია და გამართვა</textarea>
         </div>
 
         <div class="sectionCard">
           <div class="sectionTitle">
             <h2>Education & Extras</h2>
-            <div class="hint">Keep it simple</div>
+            <div class="hint">No fluff</div>
           </div>
 
           <div class="row">
             <div>
               <label>Education</label>
-              <textarea id="education">(Add your education here)
-• College / University / Courses</textarea>
+              <textarea id="education">თვითნასწავლი IT სპეციალისტი | პრაქტიკული გამოცდილება და დამოუკიდებელი პროექტები</textarea>
             </div>
             <div>
-              <label>Certifications (optional)</label>
-              <textarea id="certs">• (Add certifications if you have them)</textarea>
+              <label>Certifications</label>
+              <textarea id="certs">—</textarea>
             </div>
           </div>
 
           <label>Languages</label>
-          <textarea id="langs">Georgian – Native
-English – Intermediate (adjust honestly)</textarea>
+          <textarea id="langs">ქართული — მშობლიური
+ინგლისური — C1 (მაღალი დონე)</textarea>
         </div>
 
         <div class="btns">
@@ -469,9 +456,9 @@ English – Intermediate (adjust honestly)</textarea>
             <div class="role" id="pTitle">IT Support Specialist</div>
 
             <div class="meta">
-              <div><b>Phone:</b> <span id="pPhone">+995</span></div>
-              <div><b>Email:</b> <span id="pEmail">you@email.com</span></div>
-              <div><b>Location:</b> <span id="pLocation">Tbilisi, Georgia</span></div>
+              <div><b>Phone:</b> <span id="pPhone">—</span></div>
+              <div><b>Email:</b> <span id="pEmail">—</span></div>
+              <div><b>Location:</b> <span id="pLocation">—</span></div>
               <div><b>Link:</b> <span id="pLink">—</span></div>
             </div>
           </div>
@@ -480,34 +467,34 @@ English – Intermediate (adjust honestly)</textarea>
         <div class="cvGrid">
           <div>
             <div class="cvSection">
-              <h4>Profile</h4>
+              <h4>PROFILE</h4>
               <div class="text" id="pSummary"></div>
             </div>
 
             <div class="cvSection">
-              <h4>Experience</h4>
+              <h4>EXPERIENCE</h4>
               <div class="text" id="pExperience"></div>
             </div>
 
             <div class="cvSection">
-              <h4>Education</h4>
+              <h4>EDUCATION</h4>
               <div class="text" id="pEducation"></div>
             </div>
           </div>
 
           <div>
             <div class="cvSection">
-              <h4>Key Skills</h4>
+              <h4>KEY SKILLS</h4>
               <div class="chipList" id="pSkillsChips"></div>
             </div>
 
             <div class="cvSection">
-              <h4>Certifications</h4>
+              <h4>CERTIFICATIONS</h4>
               <div class="text" id="pCerts"></div>
             </div>
 
             <div class="cvSection">
-              <h4>Languages</h4>
+              <h4>LANGUAGES</h4>
               <div class="text" id="pLangs"></div>
             </div>
           </div>
@@ -591,45 +578,44 @@ English – Intermediate (adjust honestly)</textarea>
     }
 
     function fillSample(){
-      $("fullName").value = "Shadow (Your Full Name)";
-      $("title").value = "IT Support Specialist";
-      $("phone").value = "+995 XXX XX XX XX";
-      $("email").value = "you@email.com";
+      $("fullName").value = "ლუკა კანდელაკი";
+      $("title").value = "IT მხარდაჭერის სპეციალისტი";
+      $("phone").value = "+995 555 11 98 74";
+      $("email").value = "lukakandelaki12@gmail.com";
       $("location").value = "Tbilisi, Georgia";
-      $("link").value = "";
+      $("link").value = "https://www.linkedin.com/in/luka-kandelaki-b69518399/";
 
       $("summary").value =
-`IT Support Specialist with hands-on experience troubleshooting laptops and desktops, configuring Wi-Fi and basic networks, and delivering reliable end-user support. Skilled in laptop refurbishing (diagnostics, upgrades, OS reinstall, driver setup), software installation/configuration, and system optimization (removing unnecessary bloatware, improving performance, and ensuring stability). Strong practical knowledge of Windows editions and best-fit recommendations based on user needs, hardware, and security.`;
+`IT მხარდაჭერის სპეციალისტი პრაქტიკული გამოცდილებით ლეპტოპებისა და დესკტოპების დიაგნოსტიკასა და გამართვაში. გამოცდილი Windows 10/11 ინსტალაციაში, სისტემის ოპტიმიზაციაში, დრაივერების კონფიგურაციასა და Wi-Fi/basic ქსელური პრობლემების მოგვარებაში. გამოცდილება მაქვს SSD/RAM განახლებასა და სტაბილურობის ტესტირებაში.`;
 
       $("skills").value =
-`Laptop & Desktop Troubleshooting (hardware/software)
-Windows 10/11 installation, configuration, and optimization
-Laptop refurbishing (diagnostics, upgrades, SSD/RAM, thermal maintenance)
-Wi-Fi troubleshooting and basic networking (routers, APs, IP/DHCP basics)
-Software installation and configuration (Office, browsers, utilities)
-Driver setup, updates, and device compatibility checks
-System cleanup and bloatware removal (performance tuning)
-Backup, data transfer, and OS reinstallation
-Customer support and clear communication`;
+`Windows 10/11 Install & Troubleshoot
+Laptop Refurbishing (SSD/RAM)
+Drivers & Updates
+Performance Optimization (Debloat)
+Wi-Fi Troubleshooting
+Basic Networking (IP/DHCP)
+Software Setup (Office/Tools)
+Hardware Diagnostics`;
 
       $("experience").value =
-`IT Support / Technician (Freelance / Personal Projects) | 20XX – Present
-• Diagnosed and repaired laptops/desktops, resolving common hardware and OS issues.
-• Refurbished devices for resale/use: SSD/RAM upgrades, clean Windows installs, driver setup, and stability testing.
-• Improved system performance by removing unnecessary bloatware, disabling nonessential startup items, and applied updates safely.
-• Troubleshot Wi-Fi connectivity issues (router settings, signal/coverage, device configuration) and restored stable connections.
-• Installed and configured day-to-day software required for work/study, ensuring compatibility and user readiness.`;
+`IT მხარდაჭერა / ტექნიკოსი (Freelance / პირადი პროექტები) | 20XX – დღემდე
+• ლეპტოპ/დესკტოპ HW და OS პრობლემების დიაგნოსტიკა და აღმოფხვრა
+• Windows 10/11 სუფთა ინსტალაცია, დრაივერები და სისტემის სტაბილურობის ტესტი
+• SSD/RAM განახლება და მოწყობილობის სტაბილურობის შემოწმება
+• სისტემის ოპტიმიზაცია: ბლოუთვერის ამოშლა და Startup ტიუნინგი
+• Wi-Fi და IP/DHCP საბაზისო კონფიგურაცია და დიაგნოსტიკა
+• საოფისე პროგრამების ინსტალაცია და გამართვა`;
 
       $("education").value =
-`(Add your education here)
-• College / University / Courses`;
+`თვითნასწავლი IT სპეციალისტი | პრაქტიკული გამოცდილება და დამოუკიდებელი პროექტები`;
 
       $("certs").value =
-`• (Add certifications if you have them)`;
+`—`;
 
       $("langs").value =
-`Georgian – Native
-English – Intermediate (adjust honestly)`;
+`ქართული — მშობლიური
+ინგლისური — C1 (მაღალი დონე)`;
 
       sync();
     }
