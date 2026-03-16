@@ -1,93 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IT CV Builder</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>CV Builder - IT Support Specialist</title>
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --panel:#121623;
+      --panel2:#0f1320;
+      --text:#eaf0ff;
+      --muted:#a9b3cc;
+      --line:rgba(255,255,255,.10);
+      --accent:#73a7ff;
+      --accent2:#7cffc5;
+      --shadow: 0 18px 44px rgba(0,0,0,.55);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(115,167,255,.18), transparent 60%),
+        radial-gradient(800px 520px at 80% 20%, rgba(124,255,197,.10), transparent 55%),
+        radial-gradient(900px 600px at 50% 95%, rgba(115,167,255,.10), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      padding:28px;
+    }
 
-<style>
-body{
-font-family: Arial, sans-serif;
-background:#0f1117;
-color:#e6e6e6;
-margin:0;
-padding:20px;
-}
+    .topbar{
+      max-width:1200px;
+      margin:0 auto 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .brand .title{
+      font-size:18px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .brand .sub{
+      font-size:12px;
+      color:var(--muted);
+    }
+    .pill{
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:8px 10px;
+      border-radius:999px;
+    }
 
-.container{
-display:flex;
-gap:30px;
-}
+    .wrap{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 430px 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 1020px){
+      body{padding:16px}
+      .wrap{grid-template-columns: 1fr}
+    }
 
-.editor{
-width:40%;
-background:#1b1e27;
-padding:20px;
-border-radius:10px;
-}
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
 
-.editor input, .editor textarea{
-width:100%;
-margin-bottom:10px;
-padding:8px;
-border-radius:5px;
-border:none;
-}
+    .panelHeader{
+      padding:16px 16px 12px;
+      border-bottom:1px solid var(--line);
+      background:rgba(0,0,0,.15);
+    }
+    .panelHeader h1{
+      margin:0;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .panelHeader p{
+      margin:6px 0 0;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.35;
+    }
 
-.preview{
-width:60%;
-background:white;
-color:black;
-padding:30px;
-border-radius:10px;
-}
+    .panelBody{padding:14px 14px 16px}
+    .sectionCard{
+      background:rgba(0,0,0,.18);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      margin:10px 0;
+    }
+    .sectionTitle{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+    .hint{
+      font-size:11px;
+      color:rgba(169,179,204,.85);
+    }
 
-h2{
-margin-top:20px;
-}
+    label{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin:10px 0 6px;
+    }
+    input, textarea{
+      width:100%;
+      background:rgba(15,19,32,.85);
+      color:var(--text);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 12px;
+      outline:none;
+      font-size:14px;
+      transition: border-color .15s ease, transform .05s ease;
+    }
+    textarea{min-height:92px; resize:vertical}
+    input:focus, textarea:focus{
+      border-color: rgba(115,167,255,.55);
+      box-shadow: 0 0 0 4px rgba(115,167,255,.12);
+    }
 
-.skill{
-display:inline-block;
-background:#eee;
-padding:5px 10px;
-margin:4px;
-border-radius:15px;
-font-size:12px;
-}
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width: 520px){
+      .row{grid-template-columns:1fr}
+    }
 
-button{
-padding:10px;
-margin-top:10px;
-cursor:pointer;
-}
+    .btns{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    button{
+      border:0;
+      border-radius:14px;
+      padding:11px 12px;
+      font-weight:800;
+      cursor:pointer;
+      transition: transform .05s ease, filter .15s ease;
+    }
+    button:active{transform: translateY(1px)}
+    button.primary{
+      background:linear-gradient(135deg, var(--accent), #4f7fff);
+      color:#07101f;
+    }
+    button.secondary{
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      border:1px solid var(--line);
+    }
+    button.danger{
+      background:linear-gradient(135deg, #ff7b7b, #ff4a4a);
+      color:#220606;
+    }
 
-@media print{
-body{background:white}
-.editor{display:none}
-.preview{width:100%}
-}
-</style>
+    /* CV Preview */
+    .cv{
+      background:#fff;
+      color:#101114;
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      border:1px solid rgba(0,0,0,.12);
+      overflow:hidden;
+    }
+    .cvPage{
+      padding:26px 28px;
+    }
+    .cvTop{
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      padding-bottom:14px;
+      border-bottom:2px solid #f0f0f0;
+      margin-bottom:14px;
+    }
+    .photoBox{
+      width:120px;
+      height:150px;
+      border:1px solid #d9d9d9;
+      border-radius:14px;
+      overflow:hidden;
+      background:#f5f6f8;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+      position:relative;
+    }
+    .photoBox img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:none;
+    }
+    .photoBox .ph{
+      font-size:12px;
+      color:#777;
+      text-align:center;
+      padding:10px;
+    }
+    .head{
+      flex:1;
+      min-width:0;
+    }
+    .head h3{
+      margin:0;
+      font-size:28px;
+      line-height:1.05;
+      letter-spacing:.2px;
+    }
+    .head .role{
+      margin:7px 0 0;
+      font-weight:800;
+      color:#0a3d8a;
+      font-size:14px;
+    }
+    .meta{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:8px 16px;
+      font-size:13px;
+      color:#222;
+    }
+    .meta b{color:#111}
+    .meta span{word-break:break-word}
+
+    .cvGrid{
+      display:grid;
+      grid-template-columns: 1fr 0.85fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .cvGrid{grid-template-columns:1fr}
+    }
+
+    .cvSection{
+      margin-top:12px;
+    }
+    .cvSection h4{
+      margin:0 0 8px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:#222;
+    }
+    .text{
+      font-size:13.5px;
+      line-height:1.55;
+      color:#1a1a1a;
+      white-space:pre-wrap;
+    }
+    .chipList{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:8px;
+    }
+    .chip{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid #e6e6e6;
+      background:#fafafa;
+      color:#222;
+    }
+
+    @media print{
+      body{background:#fff; padding:0}
+      .topbar, .panel{display:none}
+      .wrap{display:block}
+      .cv{border:0; box-shadow:none}
+      .cvPage{padding:0}
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+  <div class="topbar">
+    <div class="brand">
+      <div class="title">CV Builder</div>
+      <div class="sub">Fill on the left, preview on the right. Print to PDF when done.</div>
+    </div>
+    <div class="pill">Tip: Use “Print / Save as PDF” for a clean export.</div>
+  </div>
 
-<div class="editor">
+  <div class="wrap">
+    <div class="panel">
+      <div class="panelHeader">
+        <h1>Editor</h1>
+        <p>Keep it tight. Recruiters scan fast. Weak wording gets ignored.</p>
+      </div>
+      <div class="panelBody">
 
-<h2>Personal</h2>
-<input id="name" value="ლუკა კანდელაკი">
-<input id="title" value="IT მხარდაჭერის სპეციალისტი">
-<input id="phone" value="+995 551 198 974">
-<input id="email" value="lukakandelaki12@gmail.com">
-<input id="location" value="Tbilisi, Georgia">
+        <div class="sectionCard">
+          <div class="sectionTitle">
+            <h2>Photo</h2>
+            <div class="hint">3x4 recommended</div>
+          </div>
+          <label for="photo">Upload photo</label>
+          <input id="photo" type="file" accept="image/*"/>
+        </div>
 
-<h2>Profile</h2>
-<textarea id="profile">IT მხარდაჭერის სპეციალისტი პრაქტიკული გამოცდილებით ლეპტოპებისა და დესკტოპების დიაგნოსტიკასა და გამართვაში. გამოცდილი Windows 10/11 ინსტალაციაში, სისტემის ოპტიმიზაციაში და მომხმარებლის ტექნიკურ მხარდაჭერაში. მაქვს გამოცდილება ქსელური პრობლემების დიაგნოსტიკაში (TCP/IP, DNS), Wi-Fi კონფიგურაციაში და VPN მომხმარებლების მხარდაჭერაში.</textarea>
+        <div class="sectionCard">
+          <div class="sectionTitle">
+            <h2>Personal</h2>
+            <div class="hint">Basic contact details</div>
+          </div>
+          <label>Full Name</label>
+          <input id="fullName" placeholder="Your Full Name" value="ლუკა კანდელაკი"/>
 
-<h2>Skills</h2>
-<textarea id="skills">
-Windows 10/11 Install & Troubleshoot
+          <label>Title</label>
+          <input id="title" placeholder="IT Support Specialist" value="IT მხარდაჭერის სპეციალისტი"/>
+
+          <div class="row">
+            <div>
+              <label>Phone</label>
+              <input id="phone" placeholder="+995 ..." value="+995 551 198 974"/>
+            </div>
+            <div>
+              <label>Email</label>
+              <input id="email" placeholder="you@email.com" value="lukakandelaki12@gmail.com"/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label>Location</label>
+              <input id="location" placeholder="Tbilisi, Georgia" value="Tbilisi, Georgia"/>
+            </div>
+            <div>
+              <label>LinkedIn / Website (optional)</label>
+              <input id="link" placeholder="linkedin.com/in/..." value=""/>
+            </div>
+          </div>
+        </div>
+
+        <div class="sectionCard">
+          <div class="sectionTitle">
+            <h2>Profile Summary</h2>
+            <div class="hint">Short and strong</div>
+          </div>
+          <label>Summary</label>
+          <textarea id="summary">IT მხარდაჭერის სპეციალისტი პრაქტიკული გამოცდილებით ლეპტოპებისა და დესკტოპების დიაგნოსტიკასა და გამართვაში. გამოცდილი Windows 10/11 ინსტალაციაში, სისტემის ოპტიმიზაციაში და მომხმარებლის ტექნიკურ მხარდაჭერაში. მაქვს გამოცდილება ქსელური პრობლემების დიაგნოსტიკაში (TCP/IP, DNS), Wi-Fi კონფიგურაციაში და VPN მომხმარებლების მხარდაჭერაში.</textarea>
+        </div>
+
+        <div class="sectionCard">
+          <div class="sectionTitle">
+            <h2>Key Skills</h2>
+            <div class="hint">One per line</div>
+          </div>
+          <label>Skills</label>
+          <textarea id="skills">Windows 10/11 Install & Troubleshoot
 Laptop Refurbishing (SSD/RAM)
 Drivers & Updates
 Performance Optimization (Debloat)
@@ -96,13 +394,16 @@ Basic Networking (TCP/IP, DNS, DHCP)
 VPN Account Setup & Connectivity Support
 Network Diagnostics (ipconfig, ping, tracert, nslookup)
 Software Setup (Office / Utilities)
-Hardware Diagnostics
-</textarea>
+Hardware Diagnostics</textarea>
+        </div>
 
-<h2>Experience</h2>
-<textarea id="experience">
-IT მხარდაჭერა / ტექნიკოსი (Freelance / პირადი პროექტები) | 20XX – დღემდე
-
+        <div class="sectionCard">
+          <div class="sectionTitle">
+            <h2>Experience</h2>
+            <div class="hint">Short bullets</div>
+          </div>
+          <label>Experience</label>
+          <textarea id="experience">IT მხარდაჭერა / ტექნიკოსი (Freelance / პირადი პროექტები) | 20XX – დღემდე
 • ლეპტოპ/დესკტოპ HW და OS პრობლემების დიაგნოსტიკა და აღმოფხვრა
 • Windows 10/11 სუფთა ინსტალაცია, დრაივერები და სისტემის სტაბილურობის ტესტი
 • SSD/RAM განახლება და მოწყობილობის სტაბილურობის შემოწმება
@@ -110,83 +411,219 @@ IT მხარდაჭერა / ტექნიკოსი (Freelance / პ
 • Wi-Fi და LAN პრობლემების დიაგნოსტიკა
 • TCP/IP კონფიგურაციის შემოწმება და ქსელის პრობლემების აღმოჩენა
 • VPN ანგარიშების შექმნა და მომხმარებლების დაკავშირების დახმარება
-• საოფისე პროგრამების ინსტალაცია და გამართვა
-</textarea>
+• საოფისე პროგრამების ინსტალაცია და გამართვა</textarea>
+        </div>
 
-<h2>Education</h2>
-<textarea id="education">
-თვითნასწავლი IT სპეციალისტი | პრაქტიკული გამოცდილება და დამოუკიდებელი პროექტები
-</textarea>
+        <div class="sectionCard">
+          <div class="sectionTitle">
+            <h2>Education & Extras</h2>
+            <div class="hint">No fluff</div>
+          </div>
 
-<h2>Languages</h2>
-<textarea id="languages">
-ქართული — მშობლიური
-ინგლისური — C1
-</textarea>
+          <div class="row">
+            <div>
+              <label>Education</label>
+              <textarea id="education">თვითნასწავლი IT სპეციალისტი | პრაქტიკული გამოცდილება და დამოუკიდებელი პროექტები</textarea>
+            </div>
+            <div>
+              <label>Certifications</label>
+              <textarea id="certs">—</textarea>
+            </div>
+          </div>
 
-<button onclick="updateCV()">Update Preview</button>
-<button onclick="window.print()">Print / Save PDF</button>
+          <label>Languages</label>
+          <textarea id="langs">ქართული — მშობლიური
+ინგლისური — C1 (მაღალი დონე)</textarea>
+        </div>
 
-</div>
+        <div class="btns">
+          <button type="button" class="primary" onclick="window.print()">Print / Save as PDF</button>
+          <button type="button" class="secondary" onclick="fillSample()">Fill Sample</button>
+          <button type="button" class="danger" onclick="clearAll()">Clear</button>
+        </div>
+      </div>
+    </div>
 
-<div class="preview" id="preview">
+    <div class="cv">
+      <div class="cvPage">
+        <div class="cvTop">
+          <div class="photoBox">
+            <img id="photoPreview" alt="Photo"/>
+            <div class="ph" id="photoPlaceholder">Upload a photo<br/>3x4 recommended</div>
+          </div>
 
-<h1 id="pname"></h1>
-<p id="ptitle"></p>
-<p id="pcontact"></p>
+          <div class="head">
+            <h3 id="pName">Your Full Name</h3>
+            <div class="role" id="pTitle">IT Support Specialist</div>
 
-<h2>PROFILE</h2>
-<p id="pprofile"></p>
+            <div class="meta">
+              <div><b>Phone:</b> <span id="pPhone">—</span></div>
+              <div><b>Email:</b> <span id="pEmail">—</span></div>
+              <div><b>Location:</b> <span id="pLocation">—</span></div>
+              <div><b>Link:</b> <span id="pLink">—</span></div>
+            </div>
+          </div>
+        </div>
 
-<h2>SKILLS</h2>
-<div id="pskills"></div>
+        <div class="cvGrid">
+          <div>
+            <div class="cvSection">
+              <h4>PROFILE</h4>
+              <div class="text" id="pSummary"></div>
+            </div>
 
-<h2>EXPERIENCE</h2>
-<pre id="pexperience"></pre>
+            <div class="cvSection">
+              <h4>EXPERIENCE</h4>
+              <div class="text" id="pExperience"></div>
+            </div>
 
-<h2>EDUCATION</h2>
-<p id="peducation"></p>
+            <div class="cvSection">
+              <h4>EDUCATION</h4>
+              <div class="text" id="pEducation"></div>
+            </div>
+          </div>
 
-<h2>LANGUAGES</h2>
-<p id="planguages"></p>
+          <div>
+            <div class="cvSection">
+              <h4>KEY SKILLS</h4>
+              <div class="chipList" id="pSkillsChips"></div>
+            </div>
 
-</div>
+            <div class="cvSection">
+              <h4>CERTIFICATIONS</h4>
+              <div class="text" id="pCerts"></div>
+            </div>
 
-</div>
+            <div class="cvSection">
+              <h4>LANGUAGES</h4>
+              <div class="text" id="pLangs"></div>
+            </div>
+          </div>
+        </div>
 
-<script>
+      </div>
+    </div>
 
-function updateCV(){
+  </div>
 
-document.getElementById("pname").innerText=document.getElementById("name").value
-document.getElementById("ptitle").innerText=document.getElementById("title").value
-document.getElementById("pcontact").innerText=
-document.getElementById("phone").value+" | "+
-document.getElementById("email").value+" | "+
-document.getElementById("location").value
+  <script>
+    const $ = (id) => document.getElementById(id);
 
-document.getElementById("pprofile").innerText=document.getElementById("profile").value
+    function escapeHtml(str){
+      return str.replace(/[&<>"']/g, (m) => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        "\"":"&quot;",
+        "'":"&#39;"
+      }[m]));
+    }
 
-let skills=document.getElementById("skills").value.split("\n")
-let skillHTML=""
+    function nlToText(text){
+      return (text || "").trim().replace(/\r?\n/g, "\n");
+    }
 
-skills.forEach(s=>{
-if(s.trim()!=""){
-skillHTML+=`<span class="skill">${s}</span>`
-}
-})
+    function splitLines(text){
+      return (text || "")
+        .split(/\r?\n/)
+        .map(s => s.trim())
+        .filter(Boolean);
+    }
 
-document.getElementById("pskills").innerHTML=skillHTML
+    function sync(){
+      $("pName").textContent = $("fullName").value.trim() || "Your Full Name";
+      $("pTitle").textContent = $("title").value.trim() || "IT Support Specialist";
+      $("pPhone").textContent = $("phone").value.trim() || "—";
+      $("pEmail").textContent = $("email").value.trim() || "—";
+      $("pLocation").textContent = $("location").value.trim() || "—";
 
-document.getElementById("pexperience").innerText=document.getElementById("experience").value
-document.getElementById("peducation").innerText=document.getElementById("education").value
-document.getElementById("planguages").innerText=document.getElementById("languages").value
+      const linkVal = $("link").value.trim();
+      $("pLink").textContent = linkVal ? linkVal : "—";
 
-}
+      $("pSummary").textContent = nlToText($("summary").value);
+      $("pExperience").textContent = nlToText($("experience").value);
+      $("pEducation").textContent = nlToText($("education").value);
+      $("pCerts").textContent = nlToText($("certs").value);
+      $("pLangs").textContent = nlToText($("langs").value);
 
-updateCV()
+      const skills = splitLines($("skills").value);
+      $("pSkillsChips").innerHTML = skills.map(s => `<div class="chip">${escapeHtml(s)}</div>`).join("");
+    }
 
-</script>
+    $("photo").addEventListener("change", (e) => {
+      const file = e.target.files && e.target.files[0];
+      if(!file) return;
 
+      const reader = new FileReader();
+      reader.onload = () => {
+        $("photoPreview").src = reader.result;
+        $("photoPreview").style.display = "block";
+        $("photoPlaceholder").style.display = "none";
+      };
+      reader.readAsDataURL(file);
+    });
+
+    ["fullName","title","phone","email","location","link","summary","skills","experience","education","certs","langs"]
+      .forEach(id => $(id).addEventListener("input", sync));
+
+    function clearAll(){
+      ["fullName","title","phone","email","location","link","summary","skills","experience","education","certs","langs"]
+        .forEach(id => $(id).value = "");
+      $("photo").value = "";
+      $("photoPreview").src = "";
+      $("photoPreview").style.display = "none";
+      $("photoPlaceholder").style.display = "block";
+      sync();
+    }
+
+    function fillSample(){
+      $("fullName").value = "ლუკა კანდელაკი";
+      $("title").value = "IT მხარდაჭერის სპეციალისტი";
+      $("phone").value = "+995 551 198 974";
+      $("email").value = "lukakandelaki12@gmail.com";
+      $("location").value = "Tbilisi, Georgia";
+      $("link").value = "";
+
+      $("summary").value =
+`IT მხარდაჭერის სპეციალისტი პრაქტიკული გამოცდილებით ლეპტოპებისა და დესკტოპების დიაგნოსტიკასა და გამართვაში. გამოცდილი Windows 10/11 ინსტალაციაში, სისტემის ოპტიმიზაციაში და მომხმარებლის ტექნიკურ მხარდაჭერაში. მაქვს გამოცდილება ქსელური პრობლემების დიაგნოსტიკაში (TCP/IP, DNS), Wi-Fi კონფიგურაციაში და VPN მომხმარებლების მხარდაჭერაში.`;
+
+      $("skills").value =
+`Windows 10/11 Install & Troubleshoot
+Laptop Refurbishing (SSD/RAM)
+Drivers & Updates
+Performance Optimization (Debloat)
+Wi-Fi Troubleshooting
+Basic Networking (TCP/IP, DNS, DHCP)
+VPN Account Setup & Connectivity Support
+Network Diagnostics (ipconfig, ping, tracert, nslookup)
+Software Setup (Office / Utilities)
+Hardware Diagnostics`;
+
+      $("experience").value =
+`IT მხარდაჭერა / ტექნიკოსი (Freelance / პირადი პროექტები) | 20XX – დღემდე
+• ლეპტოპ/დესკტოპ HW და OS პრობლემების დიაგნოსტიკა და აღმოფხვრა
+• Windows 10/11 სუფთა ინსტალაცია, დრაივერები და სისტემის სტაბილურობის ტესტი
+• SSD/RAM განახლება და მოწყობილობის სტაბილურობის შემოწმება
+• სისტემის ოპტიმიზაცია: ბლოუთვერის ამოშლა და Startup ტიუნინგი
+• Wi-Fi და LAN პრობლემების დიაგნოსტიკა
+• TCP/IP კონფიგურაციის შემოწმება და ქსელის პრობლემების აღმოჩენა
+• VPN ანგარიშების შექმნა და მომხმარებლების დაკავშირების დახმარება
+• საოფისე პროგრამების ინსტალაცია და გამართვა`;
+
+      $("education").value =
+`თვითნასწავლი IT სპეციალისტი | პრაქტიკული გამოცდილება და დამოუკიდებელი პროექტები`;
+
+      $("certs").value =
+`—`;
+
+      $("langs").value =
+`ქართული — მშობლიური
+ინგლისური — C1 (მაღალი დონე)`;
+
+      sync();
+    }
+
+    sync();
+  </script>
 </body>
 </html>
